@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import { MultiStepForm, Step } from "react-multi-form";
-import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react';
+import { MultiStepForm, Step } from 'react-multi-form';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import 'react-toastify/dist/ReactToastify.css';
 
 // Import images from the assets folder
-import CleaningImage from "/src/assets/Cleaning.png";
-import CookingImage from "/src/assets/Cooking.png";
-import BabySittingImage from "/src/assets/Baby-Sitting.png";
-import ElderCareImage from "/src/assets/Elder Care.png";
+import CleaningImage from '/src/assets/Cleaning.png';
+import CookingImage from '/src/assets/Cooking.png';
+import BabySittingImage from '/src/assets/Baby-Sitting.png';
+import ElderCareImage from '/src/assets/Elder Care.png';
 
 const MultiStepFormComponent = () => {
   const [formData, setFormData] = useState({
-    maidType: "",
-    gender: "",
-    mobile: "",
-    otp: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
+    maidType: '',
+    gender: '',
+    mobile: '',
+    otp: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
   });
 
   const [activeStep, setActiveStep] = useState(1);
   const [otpSent, setOtpSent] = useState(false);
-  const [generatedOtp, setGeneratedOtp] = useState("");
-  
+  const [generatedOtp, setGeneratedOtp] = useState('');
+
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleInputChange = (e) => {
@@ -35,7 +35,7 @@ const MultiStepFormComponent = () => {
 
   const sendOtp = () => {
     if (!formData.mobile || formData.mobile.length !== 10) {
-      toast.error("Please enter a valid 10-digit mobile number.");
+      toast.error('Please enter a valid 10-digit mobile number.');
       return;
     }
 
@@ -49,31 +49,31 @@ const MultiStepFormComponent = () => {
     switch (step) {
       case 1:
         if (!formData.maidType || !formData.gender) {
-          toast.error("Please select maid type and gender.");
+          toast.error('Please select maid type and gender.');
           return false;
         }
         break;
       case 2:
         if (!formData.mobile || !formData.otp) {
-          toast.error("Please enter mobile number and OTP.");
+          toast.error('Please enter mobile number and OTP.');
           return false;
         }
         if (formData.otp.length !== 6) {
-          toast.error("OTP must be 6 digits.");
+          toast.error('OTP must be 6 digits.');
           return false;
         }
         if (formData.otp !== generatedOtp) {
-          toast.error("Invalid OTP. Please try again.");
+          toast.error('Invalid OTP. Please try again.');
           return false;
         }
         break;
       case 3:
         if (!formData.firstName || !formData.lastName || !formData.email || !formData.address) {
-          toast.error("Please fill all fields.");
+          toast.error('Please fill all fields.');
           return false;
         }
         if (!/\S+@\S+\.\S+/.test(formData.email)) {
-          toast.error("Please enter a valid email address.");
+          toast.error('Please enter a valid email address.');
           return false;
         }
         break;
@@ -95,9 +95,9 @@ const MultiStepFormComponent = () => {
 
   const handleFormSubmit = () => {
     if (validateStep(activeStep)) {
-      toast.success("Form submitted successfully!");
-      // Redirect to another page after successful submission
-      navigate("/maid-details"); // Replace '/thank-you' with the desired path
+      toast.success('Form submitted successfully!');
+      // Pass the form data as state while navigating
+      navigate('/maid-details', { state: formData });
     }
   };
 
@@ -108,39 +108,35 @@ const MultiStepFormComponent = () => {
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-bold mb-4 text-center">Choose Maid Type</h2>
             <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
-              {["Cleaning", "Cooking", "Baby Sitting", "Elder Care"].map((type) => {
+              {['Cleaning', 'Cooking', 'Baby Sitting', 'Elder Care'].map((type) => {
                 let imageSrc;
                 switch (type) {
-                  case "Cleaning":
+                  case 'Cleaning':
                     imageSrc = CleaningImage;
                     break;
-                  case "Cooking":
+                  case 'Cooking':
                     imageSrc = CookingImage;
                     break;
-                  case "Baby Sitting":
+                  case 'Baby Sitting':
                     imageSrc = BabySittingImage;
                     break;
-                  case "Elder Care":
+                  case 'Elder Care':
                     imageSrc = ElderCareImage;
                     break;
                   default:
-                    imageSrc = ""; // Default image if needed
+                    imageSrc = ''; // Default image if needed
                     break;
                 }
-                
+
                 return (
                   <button
                     key={type}
                     className={`flex flex-col items-center justify-center p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 ${
-                      formData.maidType === type ? "bg-blue-600 text-white" : "bg-gray-300 text-gray-700"
+                      formData.maidType === type ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-700'
                     }`}
                     onClick={() => setFormData({ ...formData, maidType: type })}
                   >
-                    <img
-                      src={imageSrc}
-                      alt={type}
-                      className="h-16 w-16 mb-2"
-                    />
+                    <img src={imageSrc} alt={type} className="h-16 w-16 mb-2" />
                     <span className="font-medium">{type}</span>
                   </button>
                 );
@@ -149,11 +145,11 @@ const MultiStepFormComponent = () => {
 
             <h2 className="text-2xl font-bold mt-4 text-center">Select Gender</h2>
             <div className="flex gap-4 justify-center">
-              {["Male", "Female", "Any"].map((gender) => (
+              {['Male', 'Female', 'Any'].map((gender) => (
                 <button
                   key={gender}
                   className={`p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 ${
-                    formData.gender === gender ? "bg-green-600 text-white" : "bg-gray-300 text-gray-700"
+                    formData.gender === gender ? 'bg-green-600 text-white' : 'bg-gray-300 text-gray-700'
                   }`}
                   onClick={() => setFormData({ ...formData, gender })}
                 >
@@ -181,7 +177,7 @@ const MultiStepFormComponent = () => {
               onClick={sendOtp}
               className="p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300"
             >
-              {otpSent ? "Resend OTP" : "Get OTP"}
+              {otpSent ? 'Resend OTP' : 'Get OTP'}
             </button>
             <label className="font-semibold">
               OTP:
@@ -192,9 +188,7 @@ const MultiStepFormComponent = () => {
                 value={formData.otp}
                 onChange={handleInputChange}
                 className={`w-full p-4 border border-gray-300 rounded-lg mt-1 focus:outline-none ${
-                  formData.otp.length === 6 && formData.otp === generatedOtp
-                    ? "border-green-500"
-                    : "border-gray-300"
+                  formData.otp.length === 6 && formData.otp === generatedOtp ? 'border-green-500' : 'border-gray-300'
                 }`}
                 disabled={!otpSent}
               />
@@ -253,18 +247,12 @@ const MultiStepFormComponent = () => {
 
       <div className="flex justify-between mt-6">
         {activeStep > 1 && (
-          <button
-            onClick={handlePrevious}
-            className="p-4 text-blue-600 hover:underline"
-          >
+          <button onClick={handlePrevious} className="p-4 text-blue-600 hover:underline">
             Previous
           </button>
         )}
         {activeStep < 3 ? (
-          <button
-            onClick={handleNext}
-            className="p-4 text-blue-600 hover:underline"
-          >
+          <button onClick={handleNext} className="p-4 text-blue-600 hover:underline">
             Next
           </button>
         ) : (

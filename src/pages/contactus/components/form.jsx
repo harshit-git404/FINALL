@@ -55,14 +55,14 @@ export default function Form() {
                     {/* Contact Form */}
                     <div className="lg:w-2/4 w-full bg-white rounded-lg overflow-hidden px-6">
                         <div className="flex flex-col w-full mb-12">
-                            <h1 className="sm:text-3xl md:text-5xl text-3xl md:text-left text-center title-font font-bold text-[#31363F]">
+                            <h1 className="sm:text-3xl md:text-5xl text-3xl md:text-left text-center title-font font-bold text-[#004A7C]">
                                 Contact Us
                             </h1>
                         </div>
                         <form className="flex flex-wrap -m-2" onSubmit={handleSubmit}>
                             <div className="p-2 w-1/2">
                                 <div className="relative">
-                                    <label className="leading-7 text-sm text-gray-600">
+                                    <label className="leading-7 text-sm text-black">
                                         Name
                                     </label>
                                     <input
@@ -77,7 +77,7 @@ export default function Form() {
                             </div>
                             <div className="p-2 w-1/2">
                                 <div className="relative">
-                                    <label className="leading-7 text-sm text-gray-600">
+                                    <label className="leading-7 text-sm text-black">
                                         Email
                                     </label>
                                     <input
@@ -92,7 +92,7 @@ export default function Form() {
                             </div>
                             <div className="p-2 w-full">
                                 <div className="relative">
-                                    <label className="leading-7 text-sm text-gray-600">
+                                    <label className="leading-7 text-sm text-black">
                                         Mobile Number
                                     </label>
                                     <input
@@ -107,7 +107,7 @@ export default function Form() {
                             </div>
                             <div className="p-2 w-full">
                                 <div className="relative">
-                                    <label className="leading-7 text-sm text-gray-600">
+                                    <label className="leading-7 text-sm text-black">
                                         Message
                                     </label>
                                     <textarea
