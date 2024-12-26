@@ -1,5 +1,6 @@
 {
-  "name": "cropsky",
+  "name": "ghar-ki-bai",
+  "homepage": "https://Gowdhami21MID0161.github.io/ghar-ki-bai/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
