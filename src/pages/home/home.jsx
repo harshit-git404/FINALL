@@ -22,16 +22,43 @@ const Home = () => {
           WHY CHOOSE US?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
+          {/* Certified Professional Cleaners */}
           <div className="feature-item text-[#004A7C] text-lg sm:text-xl font-semibold text-center p-4 sm:p-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3000/3000777.png"
+              alt="Certified Professional Cleaners"
+              className="w-16 h-16 mx-auto mb-4"
+            />
             <span>Certified Professional Cleaners</span>
           </div>
+
+          {/* 100% Satisfaction Guaranteed */}
           <div className="feature-item text-[#004A7C] text-lg sm:text-xl font-semibold text-center p-4 sm:p-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/11182/11182611.png"
+              alt="100% Satisfaction Guaranteed"
+              className="w-16 h-16 mx-auto mb-4"
+            />
             <span>100% Satisfaction Guaranteed</span>
           </div>
+
+          {/* Location-Based Services */}
           <div className="feature-item text-[#004A7C] text-lg sm:text-xl font-semibold text-center p-4 sm:p-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/819/819814.png"
+              alt="Location-Based Services"
+              className="w-16 h-16 mx-auto mb-4"
+            />
             <span>Location-Based Services</span>
           </div>
+
+          {/* Customer-Focused Approach */}
           <div className="feature-item text-[#004A7C] text-lg sm:text-xl font-semibold text-center p-4 sm:p-6">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/11182/11182611.png"
+              alt="Customer-Focused Approach"
+              className="w-16 h-16 mx-auto mb-4"
+            />
             <span>Customer-Focused Approach</span>
           </div>
         </div>
