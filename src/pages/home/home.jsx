@@ -104,17 +104,17 @@ const Home = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-black">Elderly Caregiving</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-black">Caregiving</h3>
           </div>
           <div className="service cursor-pointer text-center" onClick={() => handleServiceSelection('Assistance')}>
             <div className="w-full h-48 sm:h-56 md:h-64 bg-gray-200 mb-4 rounded-lg overflow-hidden">
               <img
-                src="https://trrain.org/wp-content/uploads/2024/06/How-to-improve-the-quality-of-life-of-Persons-with-Disability.jpg"
-                alt="Assistance"
+                src="https://img.freepik.com/premium-vector/touching-textures-isolated-cartoon-vector-illustration_107173-18938.jpg"
+                alt="Baby sitting"
                 className="w-full h-full object-cover"
               />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-black">Assistance for Disabled</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-black">Baby Sitting</h3>
           </div>
         </div>
       </section>
