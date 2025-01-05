@@ -10,12 +10,14 @@ export default function Form() {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false); // To handle loading state
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, mobile, message } = formData;
 
@@ -33,16 +35,42 @@ export default function Form() {
       return;
     }
 
-    toast.success(`Thank you, ${name}! 😊 Our team will contact you soon.`, {
-      position: 'top-center',
-    });
+    setIsSubmitting(true); // Start loading
 
-    setFormData({
-      name: '',
-      email: '',
-      mobile: '',
-      message: '',
-    });
+    try {
+      const response = await fetch('http://localhost:5000/api/form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        toast.success(`Thank you, ${name}! 😊 ${result.message || 'Our team will contact you soon.'}`, {
+          position: 'top-center',
+        });
+
+        setFormData({
+          name: '',
+          email: '',
+          mobile: '',
+          message: '',
+        });
+      } else {
+        const error = await response.json();
+        toast.error(error.message || 'Something went wrong. Please try again!', {
+          position: 'top-center',
+        });
+      }
+    } catch (error) {
+      toast.error('Unable to submit the form. Please check your internet connection!', {
+        position: 'top-center',
+      });
+    } finally {
+      setIsSubmitting(false); // End loading
+    }
   };
 
   return (
@@ -59,6 +87,7 @@ export default function Form() {
               placeholder="Enter your name"
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2"
+              disabled={isSubmitting}
             />
           </div>
           <div>
@@ -70,6 +99,7 @@ export default function Form() {
               placeholder="Enter your email"
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2"
+              disabled={isSubmitting}
             />
           </div>
           <div>
@@ -81,6 +111,7 @@ export default function Form() {
               placeholder="Enter 10-digit mobile number"
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2"
+              disabled={isSubmitting}
             />
           </div>
           <div>
@@ -91,14 +122,18 @@ export default function Form() {
               placeholder="Enter your message"
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-2 h-32"
+              disabled={isSubmitting}
             ></textarea>
           </div>
           <div className="text-center">
             <button
               type="submit"
-              className="flex mx-auto border-2 rounded-full bg-white font-semibold text-[#31363F] py-2 px-8 focus:outline-none hover:bg-[#005691] hover:text-white text-lg"
+              className={`flex mx-auto border-2 rounded-full bg-white font-semibold text-[#31363F] py-2 px-8 focus:outline-none ${
+                isSubmitting ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-[#005691] hover:text-white'
+              } text-lg`}
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </form>
