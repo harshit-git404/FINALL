@@ -22,7 +22,8 @@
     "react-multi-form": "^1.0.5",
     "react-multistep": "^5.5.9",
     "react-router-dom": "^7.0.2",
-    "react-toastify": "^11.0.0"
+    "react-toastify": "^11.0.0",
+     "vite": "^6.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
